@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Navigate,
+  Routes,
+} from "react-router-dom";
+import "./App.css";
+import { Name } from "./pages/Name";
+
+export interface IFormData {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  salary: string;
+}
+
+export interface IFormComponentProps {
+  formData: IFormData;
+  setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
+}
 
 function App() {
+  const [formData, setFormData] = useState<IFormData>({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    salary: "",
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="p-4 max-w-md mx-auto">
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/page1" />} />
+          <Route
+            path="/page1"
+            element={<Name formData={formData} setFormData={setFormData} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
