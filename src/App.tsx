@@ -3,6 +3,7 @@ import { Route, Navigate, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Name } from "./pages/Name";
 import { Email } from "./pages/Email";
+import { Phone } from "./pages/Phone";
 
 export interface IFormData {
   fullName: string;
@@ -57,7 +58,17 @@ function App() {
             <Email
               formData={formData}
               setFormData={setFormData}
-              onNext={() => navigate("phone")}
+              onNext={() => navigate(FormStep.Phone)}
+            />
+          }
+        />
+        <Route
+          path={`/${FormStep.Phone}`}
+          element={
+            <Phone
+              formData={formData}
+              setFormData={setFormData}
+              onNext={() => navigate(FormStep.Salary)}
             />
           }
         />

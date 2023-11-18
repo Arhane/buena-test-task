@@ -1,21 +1,23 @@
 import { IFormComponentProps } from "../App";
 import { FC } from "react";
 
-export const Email: FC<IFormComponentProps> = ({
+export const Phone: FC<IFormComponentProps> = ({
   formData,
   setFormData,
   onNext,
 }) => {
   return (
     <form onSubmit={onNext}>
-      <h1 className="text-2xl font-bold mb-4">What is your email?</h1>
+      <h1 className="text-2xl font-bold mb-4">What is your phone number?</h1>
       <input
-        name={"email"}
-        type="email"
+        name={"phoneNumber"}
+        type="tel"
         className="border p-1"
         autoFocus
-        value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        value={formData.phoneNumber}
+        onChange={(e) =>
+          setFormData({ ...formData, phoneNumber: e.target.value })
+        }
       />
       <div className="flex justify-between mt-4">
         <button className="border p-1">Next</button>
