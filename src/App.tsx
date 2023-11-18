@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Navigate,
-  Routes,
-} from "react-router-dom";
+import { Route, Navigate, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Name } from "./pages/Name";
+import { Email } from "./pages/Email";
 
 export interface IFormData {
   fullName: string;
@@ -18,6 +14,7 @@ export interface IFormData {
 export interface IFormComponentProps {
   formData: IFormData;
   setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
+  onNext: () => void;
 }
 
 function App() {
@@ -28,18 +25,34 @@ function App() {
     salary: "",
   });
 
+  const navigate = useNavigate();
+
   return (
-    <Router>
-      <div className="p-4 max-w-md mx-auto">
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/page1" />} />
-          <Route
-            path="/page1"
-            element={<Name formData={formData} setFormData={setFormData} />}
-          />
-        </Routes>
-      </div>
-    </Router>
+    <div className="p-4 max-w-md mx-auto">
+      <Routes>
+        <Route path="*" element={<Navigate replace to="/name" />} />
+        <Route
+          path="/name"
+          element={
+            <Name
+              formData={formData}
+              setFormData={setFormData}
+              onNext={() => navigate("email")}
+            />
+          }
+        />
+        <Route
+          path={"/email"}
+          element={
+            <Email
+              formData={formData}
+              setFormData={setFormData}
+              onNext={() => navigate("phone")}
+            />
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 
