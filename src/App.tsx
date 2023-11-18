@@ -5,6 +5,7 @@ import { Name } from "./pages/Name";
 import { Email } from "./pages/Email";
 import { Phone } from "./pages/Phone";
 import { Salary } from "./pages/Salary";
+import { Summary } from "./pages/Summary";
 
 export interface IFormData {
   fullName: string;
@@ -24,7 +25,7 @@ export enum FormStep {
   Email = "email",
   Phone = "phone",
   Salary = "salary",
-  Conclusion = "conclusion",
+  Summary = "summary",
 }
 
 function App() {
@@ -80,9 +81,13 @@ function App() {
             <Salary
               formData={formData}
               setFormData={setFormData}
-              onNext={() => navigate(FormStep.Conclusion)}
+              onNext={() => navigate(FormStep.Summary)}
             />
           }
+        />
+        <Route
+          path={`/${FormStep.Summary}`}
+          element={<Summary formData={formData} />}
         />
       </Routes>
     </div>
