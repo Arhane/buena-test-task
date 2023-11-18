@@ -17,6 +17,13 @@ export interface IFormComponentProps {
   onNext: () => void;
 }
 
+export enum FormStep {
+  Name = "name",
+  Email = "email",
+  Phone = "phone",
+  Salary = "salary",
+}
+
 function App() {
   const [formData, setFormData] = useState<IFormData>({
     fullName: "",
@@ -30,19 +37,22 @@ function App() {
   return (
     <div className="p-4 max-w-md mx-auto">
       <Routes>
-        <Route path="*" element={<Navigate replace to="/name" />} />
         <Route
-          path="/name"
+          path="*"
+          element={<Navigate replace to={`/${FormStep.Name}`} />}
+        />
+        <Route
+          path={`/${FormStep.Name}`}
           element={
             <Name
               formData={formData}
               setFormData={setFormData}
-              onNext={() => navigate("email")}
+              onNext={() => navigate(FormStep.Email)}
             />
           }
         />
         <Route
-          path={"/email"}
+          path={`/${FormStep.Email}`}
           element={
             <Email
               formData={formData}
