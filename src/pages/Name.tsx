@@ -10,6 +10,7 @@ export const Name: FC<IFormComponentProps> = ({ formData, setFormData }) => {
         type="text"
         className="border p-1"
         value={formData.fullName}
+        autoFocus
         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
       />
       <div className="flex justify-between mt-4">
