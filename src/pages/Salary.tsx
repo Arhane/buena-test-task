@@ -1,11 +1,18 @@
 import { IFormComponentProps } from "../App";
-import { FC } from "react";
+import { FC, FormEvent, useCallback } from "react";
 
 export const Salary: FC<IFormComponentProps> = ({
   formData,
   setFormData,
   onNext,
 }) => {
+  const onSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      onNext();
+    },
+    [onNext],
+  );
   const salaryRanges = [
     "0 - 1.000",
     "1.000 - 2.000",
@@ -15,7 +22,7 @@ export const Salary: FC<IFormComponentProps> = ({
   ];
 
   return (
-    <form onSubmit={onNext}>
+    <form onSubmit={onSubmit}>
       <h1 className="text-2xl font-bold mb-4">What is your salary?</h1>
       {salaryRanges.map((range, index) => (
         <div key={index} className="flex items-center">

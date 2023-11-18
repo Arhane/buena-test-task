@@ -1,13 +1,20 @@
 import { IFormComponentProps } from "../App";
-import { FC } from "react";
+import { FC, FormEvent, useCallback } from "react";
 
 export const Name: FC<IFormComponentProps> = ({
   formData,
   setFormData,
   onNext,
 }) => {
+  const onSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      onNext();
+    },
+    [onNext],
+  );
   return (
-    <form onSubmit={onNext}>
+    <form onSubmit={onSubmit}>
       <h1 className="text-2xl font-bold mb-4">What is your name?</h1>
       <input
         name={"fullName"}
