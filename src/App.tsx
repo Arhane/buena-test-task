@@ -13,6 +13,7 @@ import { Phone } from "./pages/Phone";
 import { Salary } from "./pages/Salary";
 import { Summary } from "./pages/Summary";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useForm } from "./hooks/useForm";
 
 export interface IFormData {
   fullName: string;
@@ -36,13 +37,7 @@ export enum FormStep {
 }
 
 function App() {
-  const [formData, setFormData] = useState<IFormData>({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    salary: "",
-  });
-
+  const { setFormData, formData } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
 
