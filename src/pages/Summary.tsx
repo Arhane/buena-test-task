@@ -1,9 +1,21 @@
 import { IFormComponentProps } from "../App";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 export const Summary: FC<Pick<IFormComponentProps, "formData">> = ({
   formData,
 }) => {
+  const [isAnimationShown, setIsAnimationShown] = useState(true);
+
+  if (isAnimationShown) {
+    return (
+      <div className="w-full bg-gray-200 rounded-full h-4">
+        <div
+          className="bg-blue-600 h-4 rounded-full progress-bar-animation"
+          onAnimationEnd={() => setIsAnimationShown(false)}
+        ></div>
+      </div>
+    );
+  }
   return (
     <form>
       <h1 className="text-2xl font-bold mb-4">Summary</h1>

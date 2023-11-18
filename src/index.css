@@ -37,3 +37,16 @@ code {
   opacity: 0;
   transition: opacity 300ms ease-in;
 }
+
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress-bar-animation {
+  animation: progress-animation 2s ease-in-out;
+}
